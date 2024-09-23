@@ -1,6 +1,7 @@
 import streamlit as st
 import pandas as pd
-
+import os
+print(os.getcwd())
 # Set the title and favicon that appear in the Browser's tab bar.
 st.set_page_config(
     page_title='Reporte del de focalización'
