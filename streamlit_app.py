@@ -14,7 +14,7 @@ except subprocess.CalledProcessError as e:
     st.error(f"Error al ejecutar focalizacion.py: {e}\n{e.output}")
 
 # Cargar datos
-data = pd.read_pickle('data/focalizacion_resultados.pkl')  # Cambia a .csv si es necesario
+data = pd.read_pickle('data/focalizacion_resultados.csv')  # Cambia a .csv si es necesario
 
 # Mostrar datos
 st.dataframe(data)
