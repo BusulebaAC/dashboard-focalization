@@ -89,7 +89,7 @@ focalizacion['Nivel de riesgo Agresor'] = focalizacion['Total Agresor'].apply(la
 
 focalizacion
 
-focalizacion.to_csv('focalizacion.csv', index=False)
+#focalizacion.to_csv('focalizacion.csv', index=False)
 
 columnas_resultados = ['Ingresa tu nombre completo', 'Total Victima',
                        'Total Agresor', 'Nivel de riesgo Victima',
@@ -102,5 +102,4 @@ focalizacion_resultados = focalizacion_resultados.rename(columns={'Ingresa tu no
 focalizacion_resultados
 
 # focalizacion.to_excel('focalizacion.xlsx', index=False)
-# focalizacion_resultados.to_csv('data/focalizacion_resultados.csv', index=False)
-focalizacion_resultados.to_pickle('../data/focalizacion_resultados.pkl')
+focalizacion_resultados.to_csv('/workspaces/dashboard-focalization/data/focalizacion_resultados.csv', index=False)
