@@ -6,7 +6,12 @@ import subprocess
 st.set_page_config(page_title='Reporte del de focalización')  # Debe ser la primera línea de Streamlit
 
 # Ejecutar el script de limpieza
-result = subprocess.run(['python3', 'data/focalizacion.py'], check=True, capture_output=True, text=True)
+try:
+    result = subprocess.run(['python3', 'data/focalizacion.py'], check=True, capture_output=True, text=True)
+    st.success("Datos procesados exitosamente.")
+    print(result.stdout)  # Imprimir salida estándar en la consola
+except subprocess.CalledProcessError as e:
+    st.error(f"Error al ejecutar focalizacion.py: {e}\n{e.output}")
 
 # Cargar datos
 data = pd.read_csv('data/focalizacion_resultados.csv') 
