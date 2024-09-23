@@ -102,4 +102,5 @@ focalizacion_resultados = focalizacion_resultados.rename(columns={'Ingresa tu no
 focalizacion_resultados
 
 # focalizacion.to_excel('focalizacion.xlsx', index=False)
-focalizacion_resultados.to_csv('data/focalizacion_resultados.csv', index=False)
+# focalizacion_resultados.to_csv('data/focalizacion_resultados.csv', index=False)
+focalizacion_resultados.to_pickle('../data/focalizacion_resultados.pkl')
