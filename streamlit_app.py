@@ -55,7 +55,7 @@ try:
     df_reemplazado = reemplazar_valores(data)
 
     # Mostrar solo el DataFrame modificado con el argumento unsafe_allow_html=True
-    st.markdown(df_reemplazado.to_html(escape=False), unsafe_allow_html=True)
+    st.dataframe(df_reemplazado)
 
 except FileNotFoundError:
     # No mostrar error si no se encuentra el archivo
