@@ -32,16 +32,27 @@ except subprocess.CalledProcessError:
     pass
 
 st.subheader("Encuestas")
+
 # Cargar y mostrar los resultados estres
 try:
     data = pd.read_csv('data/check_total.csv')
     st.dataframe(data)
+
+    # Función para reemplazar valores
+    def reemplazar_valores(df):
+        return df.applymap(lambda x: '✖️' if x == 0 or pd.isna(x) else '✅')
+
+    # Aplicar la función solo a las columnas deseadas (o a todo el DataFrame)
+    df_reemplazado = reemplazar_valores(data)
+
+    st.write("DataFrame con símbolos:")
+    st.dataframe(df_reemplazado)
+
 except FileNotFoundError:
     # No mostrar error si no se encuentra el archivo
     pass
 except Exception:
     # No mostrar error en otros casos
     pass
-
 
 
