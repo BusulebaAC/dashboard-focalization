@@ -2,7 +2,6 @@ import streamlit as st
 import pandas as pd
 import subprocess
 
-# Establecer el título
 st.title("Análisis de Datos Interactivos")
 
 # Ejecutar el script de limpieza
