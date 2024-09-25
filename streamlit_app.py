@@ -24,3 +24,24 @@ except Exception:
     pass
 
 
+# Ejecutar el script de limpieza de las otras encuestas
+try:
+    subprocess.run(['python3', 'data/check_de_encuestas.py'], check=True, capture_output=True, text=True)
+except subprocess.CalledProcessError:
+    # No hacer nada en caso de error
+    pass
+
+st.subheader("Estrés")
+# Cargar y mostrar los resultados estres
+try:
+    data = pd.read_csv('data/estres.csv')
+    st.dataframe(data)
+except FileNotFoundError:
+    # No mostrar error si no se encuentra el archivo
+    pass
+except Exception:
+    # No mostrar error en otros casos
+    pass
+
+
+
