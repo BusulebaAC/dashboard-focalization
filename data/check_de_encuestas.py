@@ -144,6 +144,6 @@ for _, row in ie_baron_ice .iterrows():
 
 check_total
 
-ie_baron_ice.to_csv('ie_baron_ice.csv')
-ss.to_csv('ss.csv')
-estres.to_csv('estres.csv')
+ie_baron_ice.to_csv('/workspaces/dashboard-focalization/data/ie_baron_ice.csv', index=False)
+ss.to_csv('/workspaces/dashboard-focalization/data/ss.csv', index=False)
+estres.to_csv('/workspaces/dashboard-focalization/data/estres.csv', index=False)
