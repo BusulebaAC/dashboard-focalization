@@ -32,7 +32,9 @@ except subprocess.CalledProcessError:
     pass
 
 st.subheader("Encuestas")
-
+st.text("SS - Soporte Social")
+st.text("IE Autopercibida - Inteligencia emocional 19 y mayores")
+st.text("IE Baron ICE - Inteligencia emocional 18 o menores")
 # Cargar y mostrar los resultados estres
 try:
     data = pd.read_csv('data/check_total.csv')
@@ -62,4 +64,4 @@ except Exception:
     # No mostrar error en otros casos
     pass
 
-
+ 
