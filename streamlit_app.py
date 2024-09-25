@@ -31,10 +31,10 @@ except subprocess.CalledProcessError:
     # No hacer nada en caso de error
     pass
 
-st.subheader("Estrés")
+st.subheader("Encuestas")
 # Cargar y mostrar los resultados estres
 try:
-    data = pd.read_csv('data/estres.csv')
+    data = pd.read_csv('data/check_total')
     st.dataframe(data)
 except FileNotFoundError:
     # No mostrar error si no se encuentra el archivo

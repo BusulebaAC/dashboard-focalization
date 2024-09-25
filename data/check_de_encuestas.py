@@ -144,6 +144,7 @@ for _, row in ie_baron_ice .iterrows():
 
 check_total
 
-ie_baron_ice.to_csv('/workspaces/dashboard-focalization/data/ie_baron_ice.csv', index=False)
-ss.to_csv('/workspaces/dashboard-focalization/data/ss.csv', index=False)
-estres.to_csv('/workspaces/dashboard-focalization/data/estres.csv', index=False)
+#ie_baron_ice.to_csv('/workspaces/dashboard-focalization/data/ie_baron_ice.csv', index=False)
+#ss.to_csv('/workspaces/dashboard-focalization/data/ss.csv', index=False)
+#estres.to_csv('/workspaces/dashboard-focalization/data/estres.csv', index=False)
+check_total.to_csv('/workspaces/dashboard-focalization/data/check_total', index=False)
