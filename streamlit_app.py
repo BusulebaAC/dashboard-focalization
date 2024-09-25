@@ -2,8 +2,9 @@ import streamlit as st
 import pandas as pd
 import subprocess
 
-st.title("Análisis de Datos Interactivos")
+st.title("Reporte BUSULEBA")
 
+st.subheader("Focalización")
 # Ejecutar el script de limpieza
 try:
     subprocess.run(['python3', 'data/focalizacion.py'], check=True, capture_output=True, text=True)
