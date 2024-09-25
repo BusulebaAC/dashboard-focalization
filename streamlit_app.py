@@ -46,7 +46,7 @@ try:
         
         # Reemplazar valores con HTML
         df_modificado[columnas_a_reemplazar] = df_modificado[columnas_a_reemplazar].applymap(
-            lambda x: '<span style="color:red;">✖️</span>' if x == 0 or pd.isna(x) else '✅'
+            lambda x: '✖️' if x == 0 or pd.isna(x) else '✅'
         )
         
         return df_modificado
