@@ -34,7 +34,7 @@ except subprocess.CalledProcessError:
 st.subheader("Encuestas")
 # Cargar y mostrar los resultados estres
 try:
-    data = pd.read_csv('data/check_total')
+    data = pd.read_csv('data/check_total.csv')
     st.dataframe(data)
 except FileNotFoundError:
     # No mostrar error si no se encuentra el archivo
