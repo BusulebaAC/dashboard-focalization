@@ -1,9 +1,11 @@
+st.set_page_config(page_title='Reporte de focalización')  # Debe ser la primera línea de Streamlit
+
 import streamlit as st
 import pandas as pd
 import subprocess
 
 # Set the title and favicon that appear in the Browser's tab bar.
-st.set_page_config(page_title='Reporte del de focalización')  # Debe ser la primera línea de Streamlit
+
 
 # Ejecutar el script de limpieza
 try:
