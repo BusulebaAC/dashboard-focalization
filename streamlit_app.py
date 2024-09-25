@@ -36,17 +36,24 @@ st.subheader("Encuestas")
 # Cargar y mostrar los resultados estres
 try:
     data = pd.read_csv('data/check_total.csv')
-    st.dataframe(data)
 
-    # Función para reemplazar valores
+    # Función para reemplazar valores, ignorando la columna "Usuarios"
     def reemplazar_valores(df):
-        return df.applymap(lambda x: '✖️' if x == 0 or pd.isna(x) else '✅')
+        df_modificado = df.copy()  # Crear una copia del DataFrame
+        columnas_a_reemplazar = df.columns[df.columns != 'Usuarios']  # Excluir la columna "Usuarios"
+        
+        # Reemplazar valores con HTML
+        df_modificado[columnas_a_reemplazar] = df_modificado[columnas_a_reemplazar].applymap(
+            lambda x: '<span style="color:red;">✖️</span>' if x == 0 or pd.isna(x) else '✅'
+        )
+        
+        return df_modificado
 
-    # Aplicar la función solo a las columnas deseadas (o a todo el DataFrame)
+    # Aplicar la función
     df_reemplazado = reemplazar_valores(data)
 
-    st.write("DataFrame con símbolos:")
-    st.dataframe(df_reemplazado)
+    # Mostrar solo el DataFrame modificado con el argumento unsafe_allow_html=True
+    st.markdown(df_reemplazado.to_html(escape=False), unsafe_allow_html=True)
 
 except FileNotFoundError:
     # No mostrar error si no se encuentra el archivo
