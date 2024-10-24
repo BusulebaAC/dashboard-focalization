@@ -141,19 +141,21 @@ for _, row in ie_baron_ice .iterrows():
         })
         check_total = pd.concat([check_total, new_row], ignore_index=True)
 
-
+check_total_copy = check_total.copy()
 check_total
 
-check_total.at[3, 'IE Baron Ice'] = 36
-check_total.at[4, 'IE Baron Ice'] = 46
-check_total.at[5, 'Estres'] = 30
-check_total.at[6, 'Estres'] = 29
-check_total.at[7, 'IE Baron Ice'] = 46
+check_total_copy.at[3, 'IE Baron Ice'] = 36
+check_total_copy.at[4, 'IE Baron Ice'] = 46
+check_total_copy.at[5, 'Estres'] = 30
+check_total_copy.at[6, 'Estres'] = 29
+check_total_copy.at[7, 'IE Baron Ice'] = 46
 
 filas_a_eliminar = [17,18,14,12,19]
-check_total = check_total.drop(filas_a_eliminar)
+check_total_copy = check_total_copy.drop(filas_a_eliminar)
+
+check_total_copy
 
 #ie_baron_ice.to_csv('/workspaces/dashboard-focalization/data/ie_baron_ice.csv', index=False)
 #ss.to_csv('/workspaces/dashboard-focalization/data/ss.csv', index=False)
 #estres.to_csv('/workspaces/dashboard-focalization/data/estres.csv', index=False)
-check_total.to_csv('/workspaces/dashboard-focalization/data/check_total.csv', index=False)
+check_total_copy.to_csv('/workspaces/dashboard-focalization/data/check_total.csv', index=False)
