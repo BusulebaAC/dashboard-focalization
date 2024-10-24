@@ -144,6 +144,15 @@ for _, row in ie_baron_ice .iterrows():
 
 check_total
 
+check_total.at[3, 'IE Baron Ice'] = 36
+check_total.at[4, 'IE Baron Ice'] = 46
+check_total.at[5, 'Estres'] = 30
+check_total.at[6, 'Estres'] = 29
+check_total.at[7, 'IE Baron Ice'] = 46
+
+filas_a_eliminar = [17,18,14,12,19]
+check_total_copy = check_total.drop(filas_a_eliminar)
+
 #ie_baron_ice.to_csv('/workspaces/dashboard-focalization/data/ie_baron_ice.csv', index=False)
 #ss.to_csv('/workspaces/dashboard-focalization/data/ss.csv', index=False)
 #estres.to_csv('/workspaces/dashboard-focalization/data/estres.csv', index=False)
