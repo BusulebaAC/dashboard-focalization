@@ -149,6 +149,7 @@ check_total_copy.at[4, 'IE Baron Ice'] = 46
 check_total_copy.at[5, 'Estres'] = 30
 check_total_copy.at[6, 'Estres'] = 29
 check_total_copy.at[7, 'IE Baron Ice'] = 46
+check_total_copy.at[14, 'Estres'] = 30
 
 filas_a_eliminar = [17,18,14,12,19]
 check_total_copy = check_total_copy.drop(filas_a_eliminar)
