@@ -35,28 +35,11 @@ st.subheader("Encuestas")
 st.text("SS - Soporte Social")
 st.text("IE Autopercibida - Inteligencia emocional 19 y mayores")
 st.text("IE Baron ICE - Inteligencia emocional 18 o menores")
-# Cargar y mostrar los resultados estres
+# Cargar y mostrar los resultados 
+# Cargar y mostrar los resultados
 try:
     data = pd.read_csv('data/check_total.csv')
-
-    # Función para reemplazar valores, ignorando la columna "Usuarios"
-    def reemplazar_valores(df):
-        df_modificado = df.copy()  # Crear una copia del DataFrame
-        columnas_a_reemplazar = df.columns[df.columns != 'Usuarios']  # Excluir la columna "Usuarios"
-        
-        # Reemplazar valores con HTML
-        df_modificado[columnas_a_reemplazar] = df_modificado[columnas_a_reemplazar].applymap(
-            lambda x: '✖️' if x == 0 or pd.isna(x) else '✅'
-        )
-        
-        return df_modificado
-
-    # Aplicar la función
-    df_reemplazado = reemplazar_valores(data)
-
-    # Mostrar solo el DataFrame modificado con el argumento unsafe_allow_html=True
-    st.dataframe(df_reemplazado)
-
+    st.dataframe(data)
 except FileNotFoundError:
     # No mostrar error si no se encuentra el archivo
     pass
