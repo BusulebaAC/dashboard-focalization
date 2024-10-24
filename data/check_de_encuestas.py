@@ -74,7 +74,7 @@ def reemplazos_estres (df):
   return df
 
 reemplazos_estres (estres)
-
+numerical_df = estres.select_dtypes(include='number')
 # Calcular la suma de cada fila
 estres['Total'] = numerical_df.sum(axis=1)
 # limpiar nombres
@@ -96,7 +96,7 @@ def reemplazos_ie_baron_ice (df):
   return df
 
 reemplazos_ie_baron_ice (ie_baron_ice)
-
+numerical_df = ie_baron_ice.select_dtypes(include='number')
 # Calcular la suma de cada fila
 ie_baron_ice['Total'] = numerical_df.sum(axis=1)
 # limpiar nombres
