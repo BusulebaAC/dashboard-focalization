@@ -153,7 +153,7 @@ check_total_copy.at[7, 'IE Baron Ice'] = 46
 filas_a_eliminar = [17,18,14,12,19]
 check_total_copy = check_total_copy.drop(filas_a_eliminar)
 
-check_total_copy
+check_total_copy.replace(0, '*', inplace=True)
 
 #ie_baron_ice.to_csv('/workspaces/dashboard-focalization/data/ie_baron_ice.csv', index=False)
 #ss.to_csv('/workspaces/dashboard-focalization/data/ss.csv', index=False)
