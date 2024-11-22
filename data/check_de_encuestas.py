@@ -243,6 +243,10 @@ for _, row in ie_baron_ice_2.iterrows():
         })
         check_total_copy_2 = pd.concat([check_total_copy_2, new_row], ignore_index=True)
 
+# Eliminar filas específicas (si es necesario)
+filas_a_eliminar_2 = [17, 18, 14, 12, 19]
+check_total_copy_2 = check_total_copy_2.drop(filas_a_eliminar_2)
+
 # Reemplazar ceros por asteriscos
 check_total_copy_2.replace(0, '*', inplace=True)
 
