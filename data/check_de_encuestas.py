@@ -243,6 +243,11 @@ for _, row in ie_baron_ice_2.iterrows():
         })
         check_total_copy_2 = pd.concat([check_total_copy_2, new_row], ignore_index=True)
 
+check_total_copy.at[3, 'IE Baron Ice'] = 36
+check_total_copy.at[4, 'IE Baron Ice'] = 46
+check_total_copy.at[5, 'Estres'] = 30
+check_total_copy.at[6, 'Estres'] = 29
+check_total_copy.at[7, 'IE Baron Ice'] = 46
 # Eliminar filas específicas (si es necesario)
 filas_a_eliminar_2 = [17, 18, 14, 12, 19]
 check_total_copy_2 = check_total_copy_2.drop(filas_a_eliminar_2)
