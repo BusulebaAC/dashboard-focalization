@@ -158,4 +158,93 @@ check_total_copy.replace(0, '*', inplace=True)
 #ie_baron_ice.to_csv('/workspaces/dashboard-focalization/data/ie_baron_ice.csv', index=False)
 #ss.to_csv('/workspaces/dashboard-focalization/data/ss.csv', index=False)
 #estres.to_csv('/workspaces/dashboard-focalization/data/estres.csv', index=False)
-check_total_copy.to_csv('/workspaces/dashboard-focalization/data/check_total.csv', index=False)
+check_total_copy.reset_index(drop=True, inplace = True)
+
+'''
+limpieza corregidas
+'''
+# Definir las URLs o rutas locales de los otros 4 CSVs
+url_ie_autopercibida_2 = 'https://docs.google.com/spreadsheets/d/1cOeWbh-LbdwP7_hqu-Dtk6N28E9cwkUzlTJMhWN1_sc/gviz/tq?tqx=out:csv'
+url_estres_2 = 'https://docs.google.com/spreadsheets/d/19bdfQHVxca7Ga5SyJbTCi7klsorYYEOgll6W7rjZIo0/gviz/tq?tqx=out:csv'
+url_ss_2 = 'https://docs.google.com/spreadsheets/d/18RiD5ezgXnEY5BUesdOddjkBS5d1HxhSCsG2E7fwhMg/gviz/tq?tqx=out:csv'
+url_ie_baron_ice_2 = 'https://docs.google.com/spreadsheets/d/1H0g2_Wl35QM6Tx4cpbhZazgAVxGi_Te-MLlmqei2ilw/gviz/tq?tqx=out:csv'
+
+# Leer los otros 4 archivos
+ie_autopercibida_2 = pd.read_csv(url_ie_autopercibida_2)
+ie_baron_ice_2 = pd.read_csv(url_ie_baron_ice_2)
+estres_2 = pd.read_csv(url_estres_2)
+ss_2 = pd.read_csv(url_ss_2)
+
+# Transformar las nuevas tablas (solo si es necesario)
+transform_df([ie_autopercibida_2, ie_baron_ice_2, estres_2, ss_2])
+
+# Reemplazar los valores en las nuevas tablas
+reemplazos_ss(ss_2)
+reemplazos_estres(estres_2)
+reemplazos_ie_baron_ice(ie_baron_ice_2)
+
+# Calcular los totales para las nuevas tablas
+# Filtrar solo las columnas numéricas, luego eliminar 'edad' y calcular la suma
+numerical_columns = ss_2.select_dtypes(include='number').columns.difference(['Edad (solo el número)'])
+ss_2['Total'] = ss_2[numerical_columns].sum(axis=1)
+
+numerical_columns = estres_2.select_dtypes(include='number').columns.difference(['Edad (solo el número)'])
+estres_2['Total'] = estres_2[numerical_columns].sum(axis=1)
+
+numerical_columns = ie_baron_ice_2.select_dtypes(include='number').columns.difference(['Edad (solo el número)'])
+ie_baron_ice_2['Total'] = ie_baron_ice_2[numerical_columns].sum(axis=1)
+
+# Limpiar los nombres
+for df in [ss_2, estres_2, ie_baron_ice_2]:
+    df['Nombre completo'] = df['Nombre completo'].str.lower().apply(unidecode).str.rstrip('*')
+
+# Crear una copia de check_total para evitar modificar la original durante el proceso
+check_total_copy_2 = check_total.copy()
+
+# Agregar datos de ss_2
+for _, row in ss_2.iterrows():
+    if row['Nombre completo'] in check_total_copy_2['Usuarios'].values:
+        check_total_copy_2.loc[check_total_copy_2['Usuarios'] == row['Nombre completo'], 'SS'] = row['Total']
+    else:
+        new_row = pd.DataFrame({
+            'Usuarios': [row['Nombre completo']],
+            'SS': [row['Total']],
+            'Estres': [0],
+            'IE Autopercibida': [0],
+            'IE Baron Ice': [0]
+        })
+        check_total_copy_2 = pd.concat([check_total_copy_2, new_row], ignore_index=True)
+
+# Agregar datos de estres_2
+for _, row in estres_2.iterrows():
+    if row['Nombre completo'] in check_total_copy_2['Usuarios'].values:
+        check_total_copy_2.loc[check_total_copy_2['Usuarios'] == row['Nombre completo'], 'Estres'] = row['Total']
+    else:
+        new_row = pd.DataFrame({
+            'Usuarios': [row['Nombre completo']],
+            'SS': [0],
+            'Estres': [row['Total']],
+            'IE Autopercibida': [0],
+            'IE Baron Ice': [0]
+        })
+        check_total_copy_2 = pd.concat([check_total_copy_2, new_row], ignore_index=True)
+
+# Agregar datos de ie_baron_ice_2
+for _, row in ie_baron_ice_2.iterrows():
+    if row['Nombre completo'] in check_total_copy_2['Usuarios'].values:
+        check_total_copy_2.loc[check_total_copy_2['Usuarios'] == row['Nombre completo'], 'IE Baron Ice'] = row['Total']
+    else:
+        new_row = pd.DataFrame({
+            'Usuarios': [row['Nombre completo']],
+            'SS': [0],
+            'Estres': [0],
+            'IE Autopercibida': [0],
+            'IE Baron Ice': [row['Total']]
+        })
+        check_total_copy_2 = pd.concat([check_total_copy_2, new_row], ignore_index=True)
+
+# Reemplazar ceros por asteriscos
+check_total_copy_2.replace(0, '*', inplace=True)
+
+# exportar 
+check_total_copy_2.to_csv('/workspaces/dashboard-focalization/data/check_total.csv', index=False)
